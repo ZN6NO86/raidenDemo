@@ -6,7 +6,7 @@ public partial class Player : Area2D
 	[Signal]	
 	public delegate void HitEventHandler();
 	[Signal]
-	public delegate void ShootEventHandler(PackedScene bullet01Scene, Vector2 location);
+	public delegate void ShootEventHandler(PackedScene bullet01Scene, Vector2 location, Vector2 velocity);
 	[Export]
 	public int Speed { get; set; } = 400;
 	[Export]
@@ -58,7 +58,7 @@ public partial class Player : Area2D
 		{
 			if (shootFlag)
 			{
-				EmitSignal(SignalName.Shoot, Bullet01Scene, Position);
+				EmitSignal(SignalName.Shoot, Bullet01Scene, Position, velocity);
 				shootFlag = false;
 				GetNode<Timer>("ShootTimer").Start();
 			}

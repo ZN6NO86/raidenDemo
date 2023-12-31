@@ -1,19 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dty3m07m43b5"]
+[gd_scene load_steps=7 format=3 uid="uid://dty3m07m43b5"]
 
 [ext_resource type="Script" path="res://Bullet01.cs" id="1_73auo"]
-[ext_resource type="Texture2D" uid="uid://cwenwc1ojcjyp" path="res://art/bullet-8468.png" id="2_2mhyo"]
+[ext_resource type="Texture2D" uid="uid://bxwe1c30cn5s3" path="res://art/bullet02.png" id="2_s0wy6"]
+[ext_resource type="Texture2D" uid="uid://q4y7ugqp3jg4" path="res://art/bullet02B.png" id="3_2q4v4"]
+[ext_resource type="Texture2D" uid="uid://bganokupwk6c8" path="res://art/bullet02A.png" id="4_6yn80"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xcd1y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2mhyo")
+"texture": ExtResource("2_s0wy6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_2mhyo")
+"texture": ExtResource("3_2q4v4")
 }],
 "loop": true,
-"name": &"default",
+"name": &"A",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2q4v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6yn80")
+}],
+"loop": true,
+"name": &"B",
 "speed": 5.0
 }]
 
@@ -28,8 +41,9 @@ script = ExtResource("1_73auo")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1, 1)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_xcd1y")
+animation = &"B"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tt885")

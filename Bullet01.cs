@@ -11,12 +11,15 @@ public partial class Bullet01 : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		string[] bulletTypes = animatedSprite2D.SpriteFrames.GetAnimationNames();
+		animatedSprite2D.Play(bulletTypes[GD.Randi() % bulletTypes.Length]);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		velocity.Y = -600;
+		
 		Position += velocity * (float)delta;
 		
 	}
@@ -26,9 +29,10 @@ public partial class Bullet01 : Area2D
 		
 		
 	}
-	public void Start(Vector2 pos)
+	public void Start(Vector2 pos, Vector2 vel)
 	{
 		Position = pos;
+		velocity.Y = vel.Y - 600;
 		
 		
 	}

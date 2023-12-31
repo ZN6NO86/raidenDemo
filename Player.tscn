@@ -1,17 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyr6u3tvthuie"]
+[gd_scene load_steps=5 format=3 uid="uid://dyr6u3tvthuie"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_reav1"]
-[ext_resource type="Texture2D" uid="uid://dxcflo5kgorvm" path="res://art/playerGrey_up1.png" id="1_vytvm"]
-[ext_resource type="Texture2D" uid="uid://dlecsap8l48uc" path="res://art/playerGrey_walk1.png" id="2_r52au"]
+[ext_resource type="Texture2D" uid="uid://dc6tuhxqgxij8" path="res://art/player03.png" id="2_un56t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3kv7y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_vytvm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_r52au")
+"texture": ExtResource("2_un56t")
 }],
 "loop": true,
 "name": &"walk",
@@ -27,7 +23,7 @@ script = ExtResource("1_reav1")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_3kv7y")
 animation = &"walk"
 

@@ -63,11 +63,11 @@ public partial class main : Node
 		AddChild(enemy);
 	}
 	
-	private void _on_player_shoot(PackedScene bullet01Scene, Vector2 location)
+	private void _on_player_shoot(PackedScene bullet01Scene, Vector2 location, Vector2 velocity)
 	{
 		var position = location;
 		var bullet01 = bullet01Scene.Instantiate<Bullet01>();
-		bullet01.Start(position);
+		bullet01.Start(position, velocity);
 		AddChild(bullet01);
 		
 	// Replace with function body.
