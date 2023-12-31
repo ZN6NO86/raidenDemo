@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyr6u3tvthuie"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_reav1"]
+[ext_resource type="Texture2D" uid="uid://dxcflo5kgorvm" path="res://art/playerGrey_up1.png" id="1_vytvm"]
+[ext_resource type="Texture2D" uid="uid://dlecsap8l48uc" path="res://art/playerGrey_walk1.png" id="2_r52au"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3kv7y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vytvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r52au")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7whtt"]
+radius = 27.0
+height = 68.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_reav1")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_3kv7y")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7whtt")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

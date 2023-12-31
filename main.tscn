@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://2cs205qv5sgw"]
+
+[ext_resource type="Script" path="res://main.cs" id="1_duere"]
+[ext_resource type="PackedScene" uid="uid://dyr6u3tvthuie" path="res://Player.tscn" id="1_lyryq"]
+[ext_resource type="PackedScene" uid="uid://q5j2kke1ekft" path="res://Enemy.tscn" id="2_5i032"]
+
+[sub_resource type="Curve2D" id="Curve2D_yd83l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 48, 24, 0, 0, 0, 0, 448, 24, 0, 0, 0, 0, 448, 704, 0, 0, 0, 0, 48, 704, 0, 0, 0, 0, 48, 24)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_duere")
+EnemyScene = ExtResource("2_5i032")
+
+[node name="Player" parent="." instance=ExtResource("1_lyryq")]
+
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_yd83l")
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(48, 24)
+
+[node name="Enemy" parent="." instance=ExtResource("2_5i032")]
+scale = Vector2(0.5, 0.5)
+gravity_scale = 1.0
+linear_velocity = Vector2(1, 1)
+
+[connection signal="Hit" from="Player" to="." method="game_over"]
+[connection signal="Shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="timeout" from="EnemyTimer" to="." method="OnEnemyTimerTimeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
